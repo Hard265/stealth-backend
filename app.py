@@ -13,7 +13,7 @@ def index():
 def handle_message(data):
     """handler for the 'message' event"""
     print('Received message:', data)
-    socketio.emit('message', data)  # Echo the message back to all clients
+    socketio.emit('message', data)  # Echo tphe message back to all clients
 
 if __name__ == '__main__':
     socketio.run(app, debug=True) # type: ignore
