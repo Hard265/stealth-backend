@@ -14,15 +14,27 @@ def index():
 @app.router('/register')
 def registration(data):
     """
-    Event handler for user signup.
+    Event handler for user registration.
     Expects data to contain 'address' and 'public_key'.
+    Returns a tuple with a response message and status code.
     """
     address = data.get('address')
     public_key = data.get('public_key')
 
-    if address and public_key:
-        user_data[address] = public_key
-        print(f"User registered: {address}")
+    if not address or not public_key:
+        return "Missing address or public_key in the data", 400
+
+    # Check if the user is already registered
+    if session.query(User).filter_by(address=address).first():
+        return "User already registered with this address", 409
+
+    # Save user to the database
+    add_user_to_database(session, address, public_key)
+
+    print(f"User registered: {address}")
+
+    return "Registration successful", 200
+
 
 @socketio.on('login')
 def handle_login(data):
