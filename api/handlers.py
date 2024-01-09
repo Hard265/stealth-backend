@@ -1,5 +1,6 @@
 # registration_handler.py
 from database import create_engine_and_session, add_user_to_database
+from models import User
 
 # Assuming your database connection URL is like this:
 # postgresql://username:password@localhost:5432/database_name
