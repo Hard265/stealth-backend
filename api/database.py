@@ -1,7 +1,7 @@
 # database.py
 from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.orm import sessionmaker
-from .models import Base
+from models import Base
 
 def create_engine_and_session(db_url):
     engine = create_engine(db_url)
