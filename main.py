@@ -11,10 +11,10 @@ user_data = {}
 def index():
     return render_template('index.html')  # You can create an HTML file for the landing page
 
-@socketio.on('register')
-def handle_registration(data):
+@app.router('/register')
+def registration(data):
     """
-    Event handler for user registration.
+    Event handler for user signup.
     Expects data to contain 'address' and 'public_key'.
     """
     address = data.get('address')
